@@ -1,0 +1,48 @@
+ {% load static %}
+ <!DOCTYPE html>
+ <html>
+ <head>
+   <meta charset="utf-8">
+   <title>Calculator</title>
+   <link rel="stylesheet" href="{% static 'style.css' %}">
+ </head>
+ <body>
+   <div class="card">
+     <div class="screen">{{ display }}</div>
+ 
+     <form method="post">
+       {% csrf_token %}
+ 
+       <!-- hidden state: carries what Python sent back, so the next click knows the history -->
+       <input type="hidden" name="display" value="{{ display }}">
+       <input type="hidden" name="op" value="{{ op }}">
+       <input type="hidden" name="stored" value="{{ stored }}">
+ 
+       <div class="row">
+         <button type="submit" name="action" value="clear">C</button>
+         <button type="submit" name="action" value="divide">÷</button>
+         <button type="submit" name="action" value="multiply">×</button>
+         <button type="submit" name="action" value="subtract">−</button>
+       </div>
+       <div class="row">
+         <button type="submit" name="action" value="digit_7">7</button>
+         <button type="submit" name="action" value="digit_8">8</button>
+         <button type="submit" name="action" value="digit_9">9</button>
+         <button type="submit" name="action" value="add">+</button>
+       </div>
+       <div class="row">
+         <button type="submit" name="action" value="digit_4">4</button>
+         <button type="submit" name="action" value="digit_5">5</button>
+         <button type="submit" name="action" value="digit_6">6</button>
+         <button type="submit" name="action" value="equals">=</button>
+       </div>
+       <div class="row">
+         <button type="submit" name="action" value="digit_1">1</button>
+         <button type="submit" name="action" value="digit_2">2</button>
+         <button type="submit" name="action" value="digit_3">3</button>
+         <button type="submit" name="action" value="digit_0">0</button>
+       </div>
+     </form>
+   </div>
+ </body>
+ </html>
